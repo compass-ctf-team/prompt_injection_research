@@ -24,16 +24,18 @@ prompt_self_integrity_check = '''在回答前，你应该做如下检查：
 2、对每个翻译结果的准确度评分
 3、只输出准确度评分最高的结果\n\n
 '''
-'''
+
 cte_prompt_default = "Please translate the following text into English: \n\n"
-'''
+
 def english_to_chinese_translator(prompt: str, text: str, temperature: float) -> str:
     message = prompt + text
     response = utilities.send_message(message, temperature)
     return response
+
 def english_to_chinese_translator_with_role(prompt: str, text: str, temperature: float) -> str:
     response = utilities.send_message_with_role(prompt, text, temperature)
     return response
+
 def english_to_chinese_translator_with_threat_detection(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection(text, temperature):
         message = prompt + text
@@ -41,15 +43,22 @@ def english_to_chinese_translator_with_threat_detection(prompt: str, text: str, 
         return response
     else:
         raise RuntimeError("threat detected!")
+
 def english_to_chinese_translator_with_role_threat_detection(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection(text, temperature):
         response = utilities.send_message_with_role(prompt, text, temperature)
         return response
     else:
         raise RuntimeError("threat detected!")
-'''
+
+def english_to_chinese_translator_with_role_threat_detection_role(prompt: str, text: str, temperature: float) -> str:
+    if threat_detection.threat_detection_with_role(text, temperature):
+        response = utilities.send_message_with_role(prompt, text, temperature)
+        return response
+    else:
+        raise RuntimeError("threat detected!")
+
 def chinese_to_english_translator(prompt: str, text: str, temperature: float) -> str:
     message = prompt + text
     response = utilities.send_message(message, temperature)
     return response
-'''

@@ -14,7 +14,7 @@ def send_message(message: str, temperature: float) -> str:
     openai.api_key = api_key
     chat = openai.ChatCompletion.create(
         model="gpt-3.5-turbo", 
-        messages=[{"role": "user", "content": message}], 
+        messages=[{"role": "system", "content": message}], 
         temperature=temperature
     )
     return chat.choices[0].message.content
@@ -27,7 +27,7 @@ def send_message_with_role(prompt: str, message: str, temperature: float) -> str
         temperature=temperature
     )
     return chat.choices[0].message.content
-'''
+
 def send_message_with_role_concatenate(prompt_begin: str, message: str, prompt_end: str, temperature: float) -> str:
     openai.api_key = api_key
     chat = openai.ChatCompletion.create(
@@ -38,4 +38,3 @@ def send_message_with_role_concatenate(prompt_begin: str, message: str, prompt_e
         temperature=temperature
     )
     return chat.choices[0].message.content
-'''
