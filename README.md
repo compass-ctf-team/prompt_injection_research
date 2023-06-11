@@ -1,5 +1,7 @@
 # Prompt Injection Research
 
+**Important: Don't run this experiment in Asia proxies!!!**
+
 This research focuses on the problem of prompt injection in large language models and proposes defense strategies against it. The goal is to improve the robustness and security of language models against attacks that manipulate the input prompts to generate undesirable outputs.
 
 ## Usage

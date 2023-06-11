@@ -9,19 +9,19 @@ help_text = '''Usage: python3 application_test.py <application> <user_input> <te
 '''
 
 def test_etc_translator(user_input: str, temperature: float) -> None:
-    result = translator.english_to_chinese_translator(user_input, temperature)
+    result = translator.english_to_chinese_translator(translator.etc_prompt_default, user_input, temperature)
     print(result)
 
 def test_cte_translator(user_input: str, temperature: float) -> None:
-    result = translator.chinese_to_english_translator(user_input, temperature)
+    result = translator.chinese_to_english_translator(translator.cte_prompt_default, user_input, temperature)
     print(result)
 
 def test_verifier(user_input: str, temperature: float) -> None:
-    result = verifier.comment_verifier(user_input, temperature)
+    result = verifier.comment_verifier(verifier.prompt_default, user_input, temperature)
     print(result)
 
 def test_summarizer(user_input: str, temperature: float) -> None:
-    result = summarizer.article_summerizer(user_input, temperature)
+    result = summarizer.article_summarizer(summarizer.prompt_default, user_input, temperature)
     print(result)
 
 if __name__ == "__main__":
