@@ -3,40 +3,101 @@ import translator
 import verifier
 import summarizer
 
-help_text = '''Usage: python3 application_test.py <application> <user_input> <temperature>
-    For example: python3 application_test.py etc_translator "the quick brown fox jumped over the lazy dog" 0.7
+help_text = '''Usage: python3 application_test.py <application> <prompt> <user_input> <temperature>
+    For example: python3 application_test.py etc_translator prompt_default "the quick brown fox jumped over the lazy dog" 0.7
     Legal applications: etc_translator, cte_translator, verifier, summarizer
+    Legal prompts: prompt_default, prompt_role_play, prompt_format_interactive, prompt_ignore_non_task_information, prompt_memory_intensify, prompt_step_command, prompt_self_integrity_check
 '''
+prompts_list = ["prompt_default", "prompt_role_play", "prompt_format_interactive", "prompt_ignore_non_task_information", "prompt_memory_intensify", "prompt_step_command", "prompt_self_integrity_check"]
 
-def test_etc_translator(user_input: str, temperature: float) -> None:
-    result = translator.english_to_chinese_translator(translator.etc_prompt_default, user_input, temperature)
+def test_etc_translator(prompt: str, user_input: str, temperature: float) -> None:
+    result = ""
+    if prompt == "prompt_default":
+        result = translator.translator(translator.etc_prompt_default, user_input, temperature)
+    elif prompt == "prompt_role_play":
+        result = translator.translator_with_role(translator.etc_prompt_role_play, user_input, temperature)
+    elif prompt == "prompt_format_interactive":
+        result = translator.translator_with_format_interactive(translator.etc_prompt_format_interactive_begin, user_input, translator.etc_prompt_format_interactive_end, temperature)
+    elif prompt == "prompt_ignore_non_task_information":
+        result = translator.translator(translator.etc_prompt_ignore_non_task_information, user_input, temperature)
+    elif prompt == "prompt_memory_intensify":
+        result = translator.translator(translator.etc_prompt_memory_intensify, user_input, temperature)
+    elif prompt == "prompt_step_command":
+        result = translator.translator(translator.etc_prompt_step_command, user_input, temperature)
+    elif prompt == "prompt_self_integrity_check":
+        result = translator.translator(translator.etc_prompt_self_integrity_check, user_input, temperature)
     print(result)
 
-def test_cte_translator(user_input: str, temperature: float) -> None:
-    result = translator.chinese_to_english_translator(translator.cte_prompt_default, user_input, temperature)
+def test_cte_translator(prompt: str, user_input: str, temperature: float) -> None:
+    result = ""
+    if prompt == "prompt_default":
+        result = translator.translator(translator.cte_prompt_default, user_input, temperature)
+    elif prompt == "prompt_role_play":
+        result = translator.translator_with_role(translator.cte_prompt_role_play, user_input, temperature)
+    elif prompt == "prompt_format_interactive":
+        result = translator.translator_with_format_interactive(translator.cte_prompt_format_interactive_begin, user_input, translator.cte_prompt_format_interactive_end, temperature)
+    elif prompt == "prompt_ignore_non_task_information":
+        result = translator.translator(translator.cte_prompt_ignore_non_task_information, user_input, temperature)
+    elif prompt == "prompt_memory_intensify":
+        result = translator.translator(translator.cte_prompt_memory_intensify, user_input, temperature)
+    elif prompt == "prompt_step_command":
+        result = translator.translator(translator.cte_prompt_step_command, user_input, temperature)
+    elif prompt == "prompt_self_integrity_check":
+        result = translator.translator(translator.cte_prompt_self_integrity_check, user_input, temperature)
     print(result)
 
-def test_verifier(user_input: str, temperature: float) -> None:
-    result = verifier.comment_verifier(verifier.prompt_default, user_input, temperature)
+def test_verifier(prompt: str, user_input: str, temperature: float) -> None:
+    result = ""
+    if prompt == "prompt_default":
+        result = verifier.comment_verifier(verifier.prompt_default, user_input, temperature)
+    elif prompt == "prompt_role_play":
+        result = verifier.comment_verifier_with_role(verifier.prompt_role_play, user_input, temperature)
+    elif prompt == "prompt_format_interactive":
+        result = verifier.comment_verifier_with_format_interactive(verifier.prompt_format_interactive_begin, user_input, verifier.prompt_format_interactive_end, temperature)
+    elif prompt == "prompt_ignore_non_task_information":
+        result = verifier.comment_verifier(verifier.prompt_ignore_non_task_information, user_input, temperature)
+    elif prompt == "prompt_memory_intensify":
+        result = verifier.comment_verifier(verifier.prompt_memory_intensify, user_input, temperature)
+    elif prompt == "prompt_step_command":
+        result = verifier.comment_verifier(verifier.prompt_step_command, user_input, temperature)
+    elif prompt == "prompt_self_integrity_check":
+        result = verifier.comment_verifier(verifier.prompt_self_integrity_check, user_input, temperature)
     print(result)
 
-def test_summarizer(user_input: str, temperature: float) -> None:
-    result = summarizer.article_summarizer(summarizer.prompt_default, user_input, temperature)
+def test_summarizer(prompt: str, user_input: str, temperature: float) -> None:
+    result = ""
+    if prompt == "prompt_default":
+        result = summarizer.article_summarizer(summarizer.prompt_default, user_input, temperature)
+    elif prompt == "prompt_role_play":
+        result = summarizer.article_summarizer_with_role(summarizer.prompt_role_play, user_input, temperature)
+    elif prompt == "prompt_format_interactive":
+        result = summarizer.article_summarizer_with_format_interactive(summarizer.prompt_format_interactive_begin, user_input, summarizer.prompt_format_interactive_end, temperature)
+    elif prompt == "prompt_ignore_non_task_information":
+        result = summarizer.article_summarizer(summarizer.prompt_ignore_non_task_information, user_input, temperature)
+    elif prompt == "prompt_memory_intensify":
+        result = summarizer.article_summarizer(summarizer.prompt_memory_intensify, user_input, temperature)
+    elif prompt == "prompt_step_command":
+        result = summarizer.article_summarizer(summarizer.prompt_step_command, user_input, temperature)
+    elif prompt == "prompt_self_integrity_check":
+        result = summarizer.article_summarizer(summarizer.prompt_self_integrity_check, user_input, temperature)
     print(result)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 5:
         print(help_text)
         exit(0)
-    else:
+    elif sys.argv[2] in prompts_list:
         if sys.argv[1] == "etc_translator":
-            test_etc_translator(sys.argv[2].replace("\"", ""), float(sys.argv[3]))
+            test_etc_translator(sys.argv[2], sys.argv[3].replace("\"", ""), float(sys.argv[4]))
         elif sys.argv[1] == "cte_translator":
-            test_cte_translator(sys.argv[2].replace("\"", ""), float(sys.argv[3]))
+            test_cte_translator(+sys.argv[2], sys.argv[3].replace("\"", ""), float(sys.argv[4]))
         elif sys.argv[1] == "verifier":
-            test_verifier(sys.argv[2].replace("\"", ""), float(sys.argv[3]))
+            test_verifier(sys.argv[2], sys.argv[3].replace("\"", ""), float(sys.argv[4]))
         elif sys.argv[1] == "summarizer":
-            test_summarizer(sys.argv[2].replace("\"", ""), float(sys.argv[3]))
+            test_summarizer(+sys.argv[2], sys.argv[3].replace("\"", ""), float(sys.argv[4]))
         else:
             print(help_text)
             exit(0)
+    else:
+        print(help_text)
+        exit(0)
