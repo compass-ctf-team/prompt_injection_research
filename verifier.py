@@ -63,7 +63,7 @@ def comment_verifier_with_role_threat_detection(prompt: str, comment: str, tempe
             return False
     else:
         raise RuntimeError("threat detected!")
-
+'''
 def comment_verifier_with_role_threat_detection_role(prompt: str, comment: str, temperature: float) -> bool:
     if threat_detection.threat_detection_with_role(comment, temperature):
         response = utilities.send_message_with_role(prompt, comment, temperature)
@@ -73,3 +73,4 @@ def comment_verifier_with_role_threat_detection_role(prompt: str, comment: str, 
             return False
     else:
         raise RuntimeError("threat detected!")
+'''
