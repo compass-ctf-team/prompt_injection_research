@@ -1,6 +1,7 @@
 import utilities
+import threat_detection
 
-etc_prompt_default = "请将下列英文文本翻译为中文：\n\n"
+prompt_default = "请将下列英文文本翻译为中文：\n\n"
 prompt_role_play = "你现在是优秀的的英文-中文翻译专家。"
 prompt_format_interactive_begin = '''你需要按照示例格式输出。
 例如：
