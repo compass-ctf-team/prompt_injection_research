@@ -34,7 +34,7 @@ def send_message_with_role_concatenate(prompt_begin: str, message: str, prompt_e
         model="gpt-3.5-turbo", 
         messages=[{"role": "system", "content": prompt_begin}, 
                   {"role": "user", "content": message}, 
-                  {"role": "system", "content": prompt_end}], 
+                  {"role": "user", "content": prompt_end}], 
         temperature=temperature
     )
     return chat.choices[0].message.content
