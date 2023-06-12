@@ -49,6 +49,14 @@ def translator_with_threat_detection(prompt: str, text: str, temperature: float)
     else:
         raise RuntimeError("threat detected!")
 
+def translator_with_threat_detection_role(prompt: str, text: str, temperature: float) -> str:
+    if threat_detection.threat_detection_with_role(text, temperature):
+        message = prompt + text
+        response = utilities.send_message(message, temperature)
+        return response
+    else:
+        raise RuntimeError("threat detected!")
+
 def translator_with_role_threat_detection(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection(text, temperature):
         response = utilities.send_message_with_role(prompt, text, temperature)

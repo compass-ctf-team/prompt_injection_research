@@ -61,6 +61,17 @@ def comment_verifier_with_threat_detection(prompt: str, comment: str, temperatur
     else:
         raise RuntimeError("threat detected!")
 
+def comment_verifier_with_threat_detection_role(prompt: str, comment: str, temperature: float) -> bool:
+    if threat_detection.threat_detection_with_role(comment, temperature):
+        message = prompt + comment
+        response = utilities.send_message(message, temperature)
+        if "鉴定为恶意评论" in response:
+            return True
+        else:
+            return False
+    else:
+        raise RuntimeError("threat detected!")
+
 def comment_verifier_with_role_threat_detection(prompt: str, comment: str, temperature: float) -> bool:
     if threat_detection.threat_detection(comment, temperature):
         response = utilities.send_message_with_role(prompt, comment, temperature)
