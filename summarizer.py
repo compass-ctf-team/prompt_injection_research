@@ -48,7 +48,7 @@ def article_summarizer_with_threat_detection(prompt: str, text: str, temperature
         response = utilities.send_message(message, temperature)
         return response
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def article_summarizer_with_threat_detection_role(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection_with_role(text, temperature):
@@ -56,32 +56,32 @@ def article_summarizer_with_threat_detection_role(prompt: str, text: str, temper
         response = utilities.send_message(message, temperature)
         return response
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def article_summarizer_with_role_threat_detection(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection(text, temperature):
         response = utilities.send_message_with_role(prompt, text, temperature)
         return response
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def article_summarizer_with_role_threat_detection_role(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection_with_role(text, temperature):
         response = utilities.send_message_with_role(prompt, text, temperature)
         return response
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def article_summarizer_with_format_interactive_threat_detection(prompt_begin: str, text: str, prompt_end: str, temperature: float) -> str:
     if threat_detection.threat_detection(text, temperature):
         response = utilities.send_message_with_role_concatenate(prompt_begin, text, prompt_end, temperature)
         return response
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def article_summarizer_with_format_interactive_threat_detection_role(prompt_begin: str, text: str, prompt_end: str, temperature: float) -> str:
     if threat_detection.threat_detection_with_role(text, temperature):
         response = utilities.send_message_with_role_concatenate(prompt_begin, text, prompt_end, temperature)
         return response
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")

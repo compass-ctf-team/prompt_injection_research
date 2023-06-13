@@ -27,4 +27,5 @@ def run_experiment(dataset: str, result: str) -> None:
     output_file.close()
 
 if __name__ == "__main__":
-    run_experiment("dataset.csv", "result.csv")
+    run_experiment("dataset.csv", "result_evil.csv")
+    run_experiment("safe.csv", "result_normal.csv")

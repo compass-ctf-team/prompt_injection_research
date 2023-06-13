@@ -59,7 +59,7 @@ def comment_verifier_with_threat_detection(prompt: str, comment: str, temperatur
         else:
             return False
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def comment_verifier_with_threat_detection_role(prompt: str, comment: str, temperature: float) -> bool:
     if threat_detection.threat_detection_with_role(comment, temperature):
@@ -70,7 +70,7 @@ def comment_verifier_with_threat_detection_role(prompt: str, comment: str, tempe
         else:
             return False
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def comment_verifier_with_role_threat_detection(prompt: str, comment: str, temperature: float) -> bool:
     if threat_detection.threat_detection(comment, temperature):
@@ -80,7 +80,7 @@ def comment_verifier_with_role_threat_detection(prompt: str, comment: str, tempe
         else:
             return False
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def comment_verifier_with_role_threat_detection_role(prompt: str, comment: str, temperature: float) -> bool:
     if threat_detection.threat_detection_with_role(comment, temperature):
@@ -90,7 +90,7 @@ def comment_verifier_with_role_threat_detection_role(prompt: str, comment: str, 
         else:
             return False
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def comment_verifier_with_format_interactive_threat_detection(prompt_begin: str, text: str, prompt_end: str, temperature: float) -> bool:
     if threat_detection.threat_detection(text, temperature):
@@ -100,7 +100,7 @@ def comment_verifier_with_format_interactive_threat_detection(prompt_begin: str,
         else:
             return False
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
 
 def comment_verifier_with_format_interactive_threat_detection_role(prompt_begin: str, text: str, prompt_end: str, temperature: float) -> bool:
     if threat_detection.threat_detection_with_role(text, temperature):
@@ -110,4 +110,4 @@ def comment_verifier_with_format_interactive_threat_detection_role(prompt_begin:
         else:
             return False
     else:
-        raise RuntimeError("threat detected!")
+        return("threat detected!")
