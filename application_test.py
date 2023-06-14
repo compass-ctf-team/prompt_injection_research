@@ -18,7 +18,7 @@ def test_etc_translator(prompt: str, user_input: str, temperature: float) -> str
         elif prompt == "prompt_role_play":
             result = translator.translator_with_role(translator.etc_prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = translator.translator_with_format_interactive(translator.etc_prompt_format_interactive_begin, user_input, translator.etc_prompt_format_interactive_end, temperature)
+            result = translator.translator_with_format_interactive(translator.etc_prompt_format_interactive_system, translator.etc_prompt_format_interactive_begin, user_input, translator.etc_prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = translator.translator(translator.etc_prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -40,7 +40,7 @@ def test_etc_translator_with_threat_detection(prompt: str, user_input: str, temp
         elif prompt == "prompt_role_play":
             result = translator.translator_with_role_threat_detection(translator.etc_prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = translator.translator_with_format_interactive_threat_detection(translator.etc_prompt_format_interactive_begin, user_input, translator.etc_prompt_format_interactive_end, temperature)
+            result = translator.translator_with_format_interactive_threat_detection(translator.etc_prompt_format_interactive_system, translator.etc_prompt_format_interactive_begin, user_input, translator.etc_prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = translator.translator_with_threat_detection(translator.etc_prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -62,7 +62,7 @@ def test_etc_translator_with_threat_detection_role(prompt: str, user_input: str,
         elif prompt == "prompt_role_play":
             result = translator.translator_with_role_threat_detection_role(translator.etc_prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = translator.translator_with_format_interactive_threat_detection_role(translator.etc_prompt_format_interactive_begin, user_input, translator.etc_prompt_format_interactive_end, temperature)
+            result = translator.translator_with_format_interactive_threat_detection_role(translator.etc_prompt_format_interactive_system, translator.etc_prompt_format_interactive_begin, user_input, translator.etc_prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = translator.translator_with_threat_detection_role(translator.etc_prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -84,7 +84,7 @@ def test_cte_translator(prompt: str, user_input: str, temperature: float) -> str
         elif prompt == "prompt_role_play":
             result = translator.translator_with_role(translator.cte_prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = translator.translator_with_format_interactive(translator.cte_prompt_format_interactive_begin, user_input, translator.cte_prompt_format_interactive_end, temperature)
+            result = translator.translator_with_format_interactive(translator.cte_prompt_format_interactive_system, translator.cte_prompt_format_interactive_begin, user_input, translator.cte_prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = translator.translator(translator.cte_prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -106,7 +106,7 @@ def test_cte_translator_with_threat_detection(prompt: str, user_input: str, temp
         elif prompt == "prompt_role_play":
             result = translator.translator_with_role_threat_detection(translator.cte_prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = translator.translator_with_format_interactive_threat_detection(translator.cte_prompt_format_interactive_begin, user_input, translator.cte_prompt_format_interactive_end, temperature)
+            result = translator.translator_with_format_interactive_threat_detection(translator.cte_prompt_format_interactive_system, translator.cte_prompt_format_interactive_begin, user_input, translator.cte_prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = translator.translator_with_threat_detection(translator.cte_prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -128,7 +128,7 @@ def test_cte_translator_with_threat_detection_role(prompt: str, user_input: str,
         elif prompt == "prompt_role_play":
             result = translator.translator_with_role_threat_detection_role(translator.cte_prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = translator.translator_with_format_interactive_threat_detection_role(translator.cte_prompt_format_interactive_begin, user_input, translator.cte_prompt_format_interactive_end, temperature)
+            result = translator.translator_with_format_interactive_threat_detection_role(translator.cte_prompt_format_interactive_system, translator.cte_prompt_format_interactive_begin, user_input, translator.cte_prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = translator.translator_with_threat_detection_role(translator.cte_prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -150,7 +150,7 @@ def test_verifier(prompt: str, user_input: str, temperature: float) -> bool:
         elif prompt == "prompt_role_play":
             result = verifier.comment_verifier_with_role(verifier.prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = verifier.comment_verifier_with_format_interactive(verifier.prompt_format_interactive_begin, user_input, verifier.prompt_format_interactive_end, temperature)
+            result = verifier.comment_verifier_with_format_interactive(verifier.prompt_format_interactive_system, verifier.prompt_format_interactive_begin, user_input, verifier.prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = verifier.comment_verifier(verifier.prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -172,7 +172,7 @@ def test_verifier_with_threat_detection(prompt: str, user_input: str, temperatur
         elif prompt == "prompt_role_play":
             result = verifier.comment_verifier_with_role_threat_detection(verifier.prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = verifier.comment_verifier_with_format_interactive_threat_detection(verifier.prompt_format_interactive_begin, user_input, verifier.prompt_format_interactive_end, temperature)
+            result = verifier.comment_verifier_with_format_interactive_threat_detection(verifier.prompt_format_interactive_system, verifier.prompt_format_interactive_begin, user_input, verifier.prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = verifier.comment_verifier_with_threat_detection(verifier.prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -194,7 +194,7 @@ def test_verifier_with_threat_detection_role(prompt: str, user_input: str, tempe
         elif prompt == "prompt_role_play":
             result = verifier.comment_verifier_with_role_threat_detection_role(verifier.prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = verifier.comment_verifier_with_format_interactive_threat_detection_role(verifier.prompt_format_interactive_begin, user_input, verifier.prompt_format_interactive_end, temperature)
+            result = verifier.comment_verifier_with_format_interactive_threat_detection_role(verifier.prompt_format_interactive_system, verifier.prompt_format_interactive_begin, user_input, verifier.prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = verifier.comment_verifier_with_threat_detection_role(verifier.prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -216,7 +216,7 @@ def test_summarizer(prompt: str, user_input: str, temperature: float) -> str:
         elif prompt == "prompt_role_play":
             result = summarizer.article_summarizer_with_role(summarizer.prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = summarizer.article_summarizer_with_format_interactive(summarizer.prompt_format_interactive_begin, user_input, summarizer.prompt_format_interactive_end, temperature)
+            result = summarizer.article_summarizer_with_format_interactive(summarizer.prompt_format_interactive_system, summarizer.prompt_format_interactive_begin, user_input, summarizer.prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = summarizer.article_summarizer(summarizer.prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -238,7 +238,7 @@ def test_summarizer_with_threat_detection(prompt: str, user_input: str, temperat
         elif prompt == "prompt_role_play":
             result = summarizer.article_summarizer_with_role_threat_detection(summarizer.prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = summarizer.article_summarizer_with_format_interactive_threat_detection(summarizer.prompt_format_interactive_begin, user_input, summarizer.prompt_format_interactive_end, temperature)
+            result = summarizer.article_summarizer_with_format_interactive_threat_detection(summarizer.prompt_format_interactive_system, summarizer.prompt_format_interactive_begin, user_input, summarizer.prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = summarizer.article_summarizer_with_threat_detection(summarizer.prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
@@ -260,7 +260,7 @@ def test_summarizer_with_threat_detection_role(prompt: str, user_input: str, tem
         elif prompt == "prompt_role_play":
             result = summarizer.article_summarizer_with_role_threat_detection_role(summarizer.prompt_role_play, user_input, temperature)
         elif prompt == "prompt_format_interactive":
-            result = summarizer.article_summarizer_with_format_interactive_threat_detection_role(summarizer.prompt_format_interactive_begin, user_input, summarizer.prompt_format_interactive_end, temperature)
+            result = summarizer.article_summarizer_with_format_interactive_threat_detection_role(summarizer.prompt_format_interactive_system, summarizer.prompt_format_interactive_begin, user_input, summarizer.prompt_format_interactive_end, temperature)
         elif prompt == "prompt_ignore_non_task_information":
             result = summarizer.article_summarizer_with_threat_detection_role(summarizer.prompt_ignore_non_task_information, user_input, temperature)
         elif prompt == "prompt_memory_intensify":
