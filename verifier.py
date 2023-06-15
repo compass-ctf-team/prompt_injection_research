@@ -31,6 +31,8 @@ prompt_self_integrity_check = '''在回答前，你应该做如下检查：
 def comment_verifier(prompt: str, comment: str, temperature: float) -> bool:
     message = prompt + comment
     response = utilities.send_message(message, temperature)
+    if not response:
+        raise ConnectionError("empty response!")
     if "鉴定为恶意评论" in response:
         return True
     else:
@@ -38,6 +40,8 @@ def comment_verifier(prompt: str, comment: str, temperature: float) -> bool:
 
 def comment_verifier_with_role(prompt: str, comment: str, temperature: float) -> bool:
     response = utilities.send_message_with_role(prompt, comment, temperature)
+    if not response:
+        raise ConnectionError("empty response!")
     if "鉴定为恶意评论" in response:
         return True
     else:
@@ -45,6 +49,8 @@ def comment_verifier_with_role(prompt: str, comment: str, temperature: float) ->
 
 def comment_verifier_with_format_interactive(prompt_system: str, prompt_begin: str, comment: str, prompt_end: str, temperature: float) -> bool:
     response = utilities.send_message_with_role_concatenate(prompt_system, prompt_begin, comment, prompt_end, temperature)
+    if not response:
+        raise ConnectionError("empty response!")
     if "鉴定为恶意评论" in response:
         return True
     else:
@@ -54,60 +60,72 @@ def comment_verifier_with_threat_detection(prompt: str, comment: str, temperatur
     if threat_detection.threat_detection(comment, temperature):
         message = prompt + comment
         response = utilities.send_message(message, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         if "鉴定为恶意评论" in response:
             return True
         else:
             return False
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def comment_verifier_with_threat_detection_role(prompt: str, comment: str, temperature: float) -> bool:
     if threat_detection.threat_detection_with_role(comment, temperature):
         message = prompt + comment
         response = utilities.send_message(message, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         if "鉴定为恶意评论" in response:
             return True
         else:
             return False
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def comment_verifier_with_role_threat_detection(prompt: str, comment: str, temperature: float) -> bool:
     if threat_detection.threat_detection(comment, temperature):
         response = utilities.send_message_with_role(prompt, comment, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         if "鉴定为恶意评论" in response:
             return True
         else:
             return False
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def comment_verifier_with_role_threat_detection_role(prompt: str, comment: str, temperature: float) -> bool:
     if threat_detection.threat_detection_with_role(comment, temperature):
         response = utilities.send_message_with_role(prompt, comment, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         if "鉴定为恶意评论" in response:
             return True
         else:
             return False
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def comment_verifier_with_format_interactive_threat_detection(prompt_system: str, prompt_begin: str, text: str, prompt_end: str, temperature: float) -> bool:
     if threat_detection.threat_detection(text, temperature):
         response = utilities.send_message_with_role_concatenate(prompt_system, prompt_begin, text, prompt_end, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         if "鉴定为恶意评论" in response:
             return True
         else:
             return False
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def comment_verifier_with_format_interactive_threat_detection_role(prompt_system: str, prompt_begin: str, text: str, prompt_end: str, temperature: float) -> bool:
     if threat_detection.threat_detection_with_role(text, temperature):
         response = utilities.send_message_with_role_concatenate(prompt_system, prompt_begin, text, prompt_end, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         if "鉴定为恶意评论" in response:
             return True
         else:
             return False
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")

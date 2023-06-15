@@ -54,56 +54,74 @@ Please translate the following text into English:\n\n'''
 def translator(prompt: str, text: str, temperature: float) -> str:
     message = prompt + text
     response = utilities.send_message(message, temperature)
+    if not response:
+        raise ConnectionError("empty response!")
     return response
 
 def translator_with_role(prompt: str, text: str, temperature: float) -> str:
     response = utilities.send_message_with_role(prompt, text, temperature)
+    if not response:
+        raise ConnectionError("empty response!")
     return response
 
 def translator_with_format_interactive(prompt_system: str, prompt_begin: str, text: str, prompt_end: str, temperature: float) -> str:
     response = utilities.send_message_with_role_concatenate(prompt_system, prompt_begin, text, prompt_end, temperature)
+    if not response:
+        raise ConnectionError("empty response!")
     return response
 
 def translator_with_threat_detection(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection(text, temperature):
         message = prompt + text
         response = utilities.send_message(message, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         return response
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def translator_with_threat_detection_role(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection_with_role(text, temperature):
         message = prompt + text
         response = utilities.send_message(message, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         return response
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def translator_with_role_threat_detection(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection(text, temperature):
         response = utilities.send_message_with_role(prompt, text, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         return response
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def translator_with_role_threat_detection_role(prompt: str, text: str, temperature: float) -> str:
     if threat_detection.threat_detection_with_role(text, temperature):
         response = utilities.send_message_with_role(prompt, text, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         return response
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def translator_with_format_interactive_threat_detection(prompt_system: str, prompt_begin: str, text: str, prompt_end: str, temperature: float) -> str:
     if threat_detection.threat_detection(text, temperature):
         response = utilities.send_message_with_role_concatenate(prompt_system, prompt_begin, text, prompt_end, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         return response
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
 
 def translator_with_format_interactive_threat_detection_role(prompt_system: str, prompt_begin: str, text: str, prompt_end: str, temperature: float) -> str:
     if threat_detection.threat_detection_with_role(text, temperature):
         response = utilities.send_message_with_role_concatenate(prompt_system, prompt_begin, text, prompt_end, temperature)
+        if not response:
+            raise ConnectionError("empty response!")
         return response
     else:
-        return("threat detected!")
+        raise RuntimeError("threat detected!")
