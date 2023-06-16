@@ -3,12 +3,25 @@ import translator
 import verifier
 import summarizer
 
-help_text = '''Usage: python3 application_test.py <application> <prompt> <user_input> <temperature> [--threat_detection]/[--threat_detection_role]
-    For example: python3 application_test.py etc_translator prompt_default "the quick brown fox jumped over the lazy dog" 0.7
-    Legal applications: etc_translator, cte_translator, verifier, summarizer
-    Legal prompts: prompt_default, prompt_role_play, prompt_format_interactive, prompt_ignore_non_task_information, prompt_memory_intensify, prompt_step_command, prompt_self_integrity_check
+# Terminal color format code as string:
+# HEADER = '\033[95m'
+# OKBLUE = '\033[94m'
+# OKCYAN = '\033[96m'
+# OKGREEN = '\033[92m'
+# WARNING = '\033[93m'
+# FAIL = '\033[91m'
+# ENDC = '\033[0m'
+# BOLD = '\033[1m'
+# UNDERLINE = '\033[4m'
+
+help_text = '''\033[95mUsage: python3 application_test.py <application> <prompt> <user_input> <temperature> [--threat_detection]/[--threat_detection_role]
+    \033[96mFor example: python3 application_test.py etc_translator prompt_default "the quick brown fox jumped over the lazy dog" 0.7
+    \033[96mAnother example: python3 application_test.py etc_translator prompt_format_interactive "how do you know I'm the APEX predator of season 16?" 1.0 --threat_detection
+    \033[92mLegal applications: etc_translator, cte_translator, verifier, summarizer
+    \033[92mLegal prompts: prompt_default, prompt_role_play, prompt_format_interactive, prompt_ignore_non_task_information, prompt_memory_intensify, prompt_step_command, prompt_self_integrity_check
 '''
-prompts_list = ["prompt_default", "prompt_role_play", "prompt_format_interactive", "prompt_ignore_non_task_information", "prompt_memory_intensify", "prompt_step_command", "prompt_self_integrity_check"]
+prompts_list = ["prompt_role_play", "prompt_format_interactive", "prompt_ignore_non_task_information", "prompt_memory_intensify"]
+terminators_list = ["prompt_default", "prompt_step_command", "prompt_self_integrity_check"]
 
 def test_etc_translator(prompt: str, user_input: str, temperature: float) -> str:
     result = ""
@@ -27,7 +40,7 @@ def test_etc_translator(prompt: str, user_input: str, temperature: float) -> str
             result = translator.translator(translator.etc_prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator(translator.etc_prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_etc_translator(prompt, user_input, temperature)
@@ -51,7 +64,7 @@ def test_etc_translator_with_threat_detection(prompt: str, user_input: str, temp
             result = translator.translator_with_threat_detection(translator.etc_prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator_with_threat_detection(translator.etc_prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_etc_translator_with_threat_detection(prompt, user_input, temperature)
@@ -75,7 +88,7 @@ def test_etc_translator_with_threat_detection_role(prompt: str, user_input: str,
             result = translator.translator_with_threat_detection_role(translator.etc_prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator_with_threat_detection_role(translator.etc_prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_etc_translator_with_threat_detection_role(prompt, user_input, temperature)
@@ -99,7 +112,7 @@ def test_cte_translator(prompt: str, user_input: str, temperature: float) -> str
             result = translator.translator(translator.cte_prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator(translator.cte_prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_cte_translator(prompt, user_input, temperature)
@@ -123,7 +136,7 @@ def test_cte_translator_with_threat_detection(prompt: str, user_input: str, temp
             result = translator.translator_with_threat_detection(translator.cte_prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator_with_threat_detection(translator.cte_prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_cte_translator_with_threat_detection(prompt, user_input, temperature)
@@ -147,14 +160,14 @@ def test_cte_translator_with_threat_detection_role(prompt: str, user_input: str,
             result = translator.translator_with_threat_detection_role(translator.cte_prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator_with_threat_detection_role(translator.cte_prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_cte_translator_with_threat_detection_role(prompt, user_input, temperature)
     print("cte_translator_with_threat_detection_role", prompt, user_input, temperature, result, sep=",")
     return result
 
-def test_verifier(prompt: str, user_input: str, temperature: float) -> bool:
+def test_verifier(prompt: str, user_input: str, temperature: float) -> str:
     result = ""
     try:
         if prompt == "prompt_default":
@@ -171,14 +184,14 @@ def test_verifier(prompt: str, user_input: str, temperature: float) -> bool:
             result = verifier.comment_verifier(verifier.prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = verifier.comment_verifier(verifier.prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_verifier(prompt, user_input, temperature)
     print("verifier", prompt, user_input, temperature, result, sep=",")
     return result
 
-def test_verifier_with_threat_detection(prompt: str, user_input: str, temperature: float) -> bool:
+def test_verifier_with_threat_detection(prompt: str, user_input: str, temperature: float) -> str:
     result = ""
     try:
         if prompt == "prompt_default":
@@ -195,14 +208,14 @@ def test_verifier_with_threat_detection(prompt: str, user_input: str, temperatur
             result = verifier.comment_verifier_with_threat_detection(verifier.prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = verifier.comment_verifier_with_threat_detection(verifier.prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_verifier_with_threat_detection(prompt, user_input, temperature)
     print("verifier_with_threat_detection", prompt, user_input, temperature, result, sep=",")
     return result
 
-def test_verifier_with_threat_detection_role(prompt: str, user_input: str, temperature: float) -> bool:
+def test_verifier_with_threat_detection_role(prompt: str, user_input: str, temperature: float) -> str:
     result = ""
     try:
         if prompt == "prompt_default":
@@ -219,7 +232,7 @@ def test_verifier_with_threat_detection_role(prompt: str, user_input: str, tempe
             result = verifier.comment_verifier_with_threat_detection_role(verifier.prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = verifier.comment_verifier_with_threat_detection_role(verifier.prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_verifier_with_threat_detection_role(prompt, user_input, temperature)
@@ -243,7 +256,7 @@ def test_summarizer(prompt: str, user_input: str, temperature: float) -> str:
             result = summarizer.article_summarizer(summarizer.prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = summarizer.article_summarizer(summarizer.prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_summarizer(prompt, user_input, temperature)
@@ -267,7 +280,7 @@ def test_summarizer_with_threat_detection(prompt: str, user_input: str, temperat
             result = summarizer.article_summarizer_with_threat_detection(summarizer.prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = summarizer.article_summarizer_with_threat_detection(summarizer.prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_summarizer_with_threat_detection(prompt, user_input, temperature)
@@ -291,7 +304,7 @@ def test_summarizer_with_threat_detection_role(prompt: str, user_input: str, tem
             result = summarizer.article_summarizer_with_threat_detection_role(summarizer.prompt_step_command, user_input, temperature)
         elif prompt == "prompt_self_integrity_check":
             result = summarizer.article_summarizer_with_threat_detection_role(summarizer.prompt_self_integrity_check, user_input, temperature)
-    except (RuntimeError, ConnectionError) as err:
+    except RuntimeError as err:
         result = err.args()
     except:
         test_summarizer_with_threat_detection_role(prompt, user_input, temperature)
@@ -300,7 +313,7 @@ def test_summarizer_with_threat_detection_role(prompt: str, user_input: str, tem
 
 if __name__ == "__main__":
     if len(sys.argv) == 5:
-        if sys.argv[2] in prompts_list:
+        if sys.argv[2] in prompts_list or sys.argv[2] in terminators_list:
             if sys.argv[1] == "etc_translator":
                 test_etc_translator(sys.argv[2], sys.argv[3].replace("\"", ""), float(sys.argv[4]))
             elif sys.argv[1] == "cte_translator":
@@ -316,7 +329,7 @@ if __name__ == "__main__":
             print(help_text)
             exit(0)
     elif len(sys.argv) == 6 and sys.argv[5] == "--threat_detection":
-        if sys.argv[2] in prompts_list:
+        if sys.argv[2] in prompts_list or sys.argv[2] in terminators_list:
             if sys.argv[1] == "etc_translator":
                 test_etc_translator_with_threat_detection(sys.argv[2], sys.argv[3].replace("\"", ""), float(sys.argv[4]))
             elif sys.argv[1] == "cte_translator":
@@ -332,7 +345,7 @@ if __name__ == "__main__":
             print(help_text)
             exit(0)
     elif len(sys.argv) == 6 and sys.argv[5] == "--threat_detection_role":
-        if sys.argv[2] in prompts_list:
+        if sys.argv[2] in prompts_list or sys.argv[2] in terminators_list:
             if sys.argv[1] == "etc_translator":
                 test_etc_translator_with_threat_detection_role(sys.argv[2], sys.argv[3].replace("\"", ""), float(sys.argv[4]))
             elif sys.argv[1] == "cte_translator":
