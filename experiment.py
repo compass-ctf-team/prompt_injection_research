@@ -51,6 +51,9 @@ def run_experiment_with_format_interactive_only(dataset: str, result: str) -> No
     output_file.close()
 
 if __name__ == "__main__":
-    run_experiment("dataset/attack.csv", "data/result_attack.csv")
-    run_experiment("dataset/dataset.csv", "data/result_evil.csv")
-    run_experiment("dataset/safe.csv", "data/result_normal.csv")
+    # run_experiment("dataset/attack.csv", "data/result_attack.csv")
+    # run_experiment("dataset/dataset.csv", "data/result_evil.csv")
+    # run_experiment("dataset/safe.csv", "data/result_normal.csv")
+    run_experiment_with_format_interactive_only("dataset/attack.csv", "data/format_interactive_attack.csv")
+    run_experiment_with_format_interactive_only("dataset/dataset.csv", "data/format_interactive_dataset.csv")
+    run_experiment_with_format_interactive_only("dataset/safe.csv", "data/format_interactive_safe.csv")

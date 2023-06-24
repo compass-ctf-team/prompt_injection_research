@@ -41,7 +41,7 @@ def test_etc_translator(prompt: str, user_input: str, temperature: float) -> str
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator(translator.etc_prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_etc_translator(prompt, user_input, temperature)
     print("etc_translator", prompt, user_input, temperature, result, sep=",")
@@ -65,7 +65,7 @@ def test_etc_translator_with_threat_detection(prompt: str, user_input: str, temp
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator_with_threat_detection(translator.etc_prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_etc_translator_with_threat_detection(prompt, user_input, temperature)
     print("etc_translator_with_threat_detection", prompt, user_input, temperature, result, sep=",")
@@ -89,7 +89,7 @@ def test_etc_translator_with_threat_detection_role(prompt: str, user_input: str,
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator_with_threat_detection_role(translator.etc_prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_etc_translator_with_threat_detection_role(prompt, user_input, temperature)
     print("etc_translator_with_threat_detection_role", prompt, user_input, temperature, result, sep=",")
@@ -113,7 +113,7 @@ def test_cte_translator(prompt: str, user_input: str, temperature: float) -> str
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator(translator.cte_prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_cte_translator(prompt, user_input, temperature)
     print("cte_translator", prompt, user_input, temperature, result, sep=",")
@@ -137,7 +137,7 @@ def test_cte_translator_with_threat_detection(prompt: str, user_input: str, temp
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator_with_threat_detection(translator.cte_prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_cte_translator_with_threat_detection(prompt, user_input, temperature)
     print("cte_translator_with_threat_detection", prompt, user_input, temperature, result, sep=",")
@@ -161,7 +161,7 @@ def test_cte_translator_with_threat_detection_role(prompt: str, user_input: str,
         elif prompt == "prompt_self_integrity_check":
             result = translator.translator_with_threat_detection_role(translator.cte_prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_cte_translator_with_threat_detection_role(prompt, user_input, temperature)
     print("cte_translator_with_threat_detection_role", prompt, user_input, temperature, result, sep=",")
@@ -185,7 +185,7 @@ def test_verifier(prompt: str, user_input: str, temperature: float) -> str:
         elif prompt == "prompt_self_integrity_check":
             result = verifier.comment_verifier(verifier.prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_verifier(prompt, user_input, temperature)
     print("verifier", prompt, user_input, temperature, result, sep=",")
@@ -209,7 +209,7 @@ def test_verifier_with_threat_detection(prompt: str, user_input: str, temperatur
         elif prompt == "prompt_self_integrity_check":
             result = verifier.comment_verifier_with_threat_detection(verifier.prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_verifier_with_threat_detection(prompt, user_input, temperature)
     print("verifier_with_threat_detection", prompt, user_input, temperature, result, sep=",")
@@ -233,7 +233,7 @@ def test_verifier_with_threat_detection_role(prompt: str, user_input: str, tempe
         elif prompt == "prompt_self_integrity_check":
             result = verifier.comment_verifier_with_threat_detection_role(verifier.prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_verifier_with_threat_detection_role(prompt, user_input, temperature)
     print("verifier_with_threat_detection_role", prompt, user_input, temperature, result, sep=",")
@@ -257,7 +257,7 @@ def test_summarizer(prompt: str, user_input: str, temperature: float) -> str:
         elif prompt == "prompt_self_integrity_check":
             result = summarizer.article_summarizer(summarizer.prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_summarizer(prompt, user_input, temperature)
     print("summarizer", prompt, user_input, temperature, result, sep=",")
@@ -281,7 +281,7 @@ def test_summarizer_with_threat_detection(prompt: str, user_input: str, temperat
         elif prompt == "prompt_self_integrity_check":
             result = summarizer.article_summarizer_with_threat_detection(summarizer.prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_summarizer_with_threat_detection(prompt, user_input, temperature)
     print("summarizer_with_threat_detection", prompt, user_input, temperature, result, sep=",")
@@ -305,7 +305,7 @@ def test_summarizer_with_threat_detection_role(prompt: str, user_input: str, tem
         elif prompt == "prompt_self_integrity_check":
             result = summarizer.article_summarizer_with_threat_detection_role(summarizer.prompt_self_integrity_check, user_input, temperature)
     except RuntimeError as err:
-        result = err.args()
+        result = err.args
     except:
         test_summarizer_with_threat_detection_role(prompt, user_input, temperature)
     print("summarizer_with_threat_detection_role", prompt, user_input, temperature, result, sep=",")
